@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 
 const Collapse = (props) => {
-  // Setting collapse not open
+  // // Paramètre de Collaps non ouvert
   const [open, setOpen] = useState(false);
 
-  // Setting the opposite state of the collapse (toggle)
+  // réglage de l'état opposé de l'effondrement (bascule)
   const toggle = () => {
     setOpen(!open);
   };
 
   return (
     <div className="collapse_container">
-      {/* On click, toggle collapse */}
+      {/* au clic, basculer l'effondrement */}
       <div className="button_container" onClick={toggle}>
         <div className="collapse_button">
           {" "}
           <p>{props.label}</p>{" "}
         </div>
-        {/* if the collapse is open, display this */}
+        {/* si le Collaps est ouvert, affichez-le */}
         {open ? (
           <i className="fa-solid fa-chevron-up"></i>
         ) : (
-          // Otherwise, display this
+          // Sinon, affichez ceci
           <i className="fa-solid fa-chevron-down"></i>
         )}
       </div>
-      {/* if the collapse is open, display this */}
+      {/* si le Collaps est ouvert, affichez-le */}
       {open && <div className="collapse_content"> {props.content} </div>}
     </div>
   );

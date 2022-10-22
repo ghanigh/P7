@@ -3,17 +3,17 @@ import leftArrow from "../img/VectorLeft.svg";
 import rightArrow from "../img/VectorRight.svg";
 
 const Slideshow = (data) => {
-  // Setting initial state of Slideshow index
+  // Définition de l'état initial de l'index du diaporama
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Setting previous picture change
+  // Réglage du changement d'image précédent
   const previousPicture = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? data.data.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
-  // Setting next picture change
+  // Réglage du prochain changement d'image
   const nextPicture = () => {
     const isLastSlide = currentIndex === data.data.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
@@ -22,7 +22,7 @@ const Slideshow = (data) => {
 
   return (
     <div className="slideshow_container">
-      {/* If data length > 1, display the arrows */}
+      {/* Si longueur des données > 1, afficher les flèches */}
       {data.data.length > 1 && (
         <>
           <img
@@ -39,7 +39,7 @@ const Slideshow = (data) => {
           />
         </>
       )}
-      {/* Display the index of the picture in slideshow */}
+      {/* Afficher l'index de l'image en diaporama */}
       <div className="slideshow_container_pictures">
         <img src={data.data[currentIndex]} alt="" />
       </div>

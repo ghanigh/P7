@@ -11,14 +11,14 @@ import Error404 from "./Error404";
 import Footer from "../components/Footer";
 
 const Lodging = () => {
-  // Context import (datas)
+  // Importation de contexte (données)
   const data = useContext(AppContext);
-  // Location storage to differentiate components className depending on the page location
+  // Emplacement de stockage pour différencier les composants className en fonction de l'emplacement de la page
   const path = useLocation().pathname;
   const location = path.split("/")[1];
-  // URL storage
+  // Stockage URL
   const urlId = useParams().id;
-  // Basic state of specific datas
+  // État de base de données spécifiques
   const [lodgingData, setLodgingData] = useState({
     cover: "",
     description: "",
@@ -32,24 +32,24 @@ const Lodging = () => {
     title: "",
   });
 
-  // Corresponding lodging data storage
+  // Stockage correspondant des données d'hébergement
   useEffect(() => {
     const pushLodgingData = async () => {
-      // Searching corresponding lodging data
+      // Recherche des données d'hébergement correspondantes
       let found = data.find((o) => o.id === urlId);
-      // Push these in lodgingData
+      // Poussez-les dans l'hébergementDonnées
       await setLodgingData(found);
-      // Go to top of page when re-render
+      //Aller en haut de la page lors du nouveau rendu
       window.scrollTo(0, 0);
     };
     pushLodgingData();
   });
 
-  // Error handling if the lodging id is not correct
+  // Gestion des erreurs si l'identifiant de l'hébergement n'est pas correct
   if (lodgingData === undefined) {
     return <Error404 />;
   }
-  // Display a loading spinner if data takes a long time to store
+  // Afficher un spinner de chargement si les données prennent beaucoup de temps à stocker
   if (!lodgingData) {
     return (
       <div>
@@ -58,13 +58,13 @@ const Lodging = () => {
     );
   }
 
-  // Separation of surname and first name from data
+  // Séparation du nom et du prénom des données
   let name = lodgingData.host.name.split(" ");
 
   return (
     <div>
       <Header />
-      {/* If loadgingData are ok, display this */}
+      {/* Si loadgingData est correct, affichez ceci */}
       {lodgingData && (
         <section>
           <>
@@ -76,7 +76,7 @@ const Lodging = () => {
                   <p>{lodgingData.location}</p>
                 </div>
                 <div className="lodging_block_infos_item tagName">
-                  {/* Creation of a tag item for each tag present in data*/}
+                  {/* Création d'un élément tag pour chaque tag présent dans les données*/}
                   {lodgingData.tags.map((tag, index) => {
                     return <TagName tag={tag} key={index} />;
                   })}
@@ -149,7 +149,7 @@ const Lodging = () => {
                 label="Équipements"
                 content={
                   <ul>
-                    {/* Creation of a li for each data index in equipment */}
+                    {/* Création d'un affichage différent des étoiles pour chaque note d'hôte*/}
                     {lodgingData.equipments.map((equipement, index) => {
                       return <li key={index}>{equipement}</li>;
                     })}
